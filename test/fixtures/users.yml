@@ -3,3 +3,9 @@ rodrigo:
   last_name: "Soares"
   profile_name: "Roderswiss"
   email: "roderswiss@outlook.com"
+
+caroline:
+  first_name: "Caroline"
+  last_name: "Carlos"
+  profile_name: "Carol"
+  email: "carolinec@al.insper.edu.br"

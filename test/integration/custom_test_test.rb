@@ -16,7 +16,7 @@ class CustomTestTest < ActionDispatch::IntegrationTest
   	
   end
 
-test 'The /logout direcotry is successfully redirecting to the logout page' do
+  test 'The /logout direcotry is successfully redirecting to the logout page' do
   	get '/logout'
 
   	assert_response :redirect
@@ -24,11 +24,16 @@ test 'The /logout direcotry is successfully redirecting to the logout page' do
 
   	
   end
-test 'The /edit direcotry is successfully redirecting to the edit page' do
+  test 'The /edit direcotry is successfully redirecting to the edit page' do
   	get '/login'
 
   	assert_response :success
   	
+  end
+
+  test "to make sure profile page works" do
+    get '/Roderswiss'
+    assert_response :success
   end
 
 
