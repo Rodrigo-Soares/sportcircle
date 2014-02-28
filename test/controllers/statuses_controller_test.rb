@@ -35,6 +35,22 @@ class StatusesControllerTest < ActionController::TestCase
 
   end
 
+  test "should get to edit status when logged in" do
+  
+  sign_in users(:rodrigo)
+  get :edit, id: @status
+  assert_response :success
+
+  end
+
+  test "should be redirected when tryint to edit status and not logged in" do
+  
+  get :edit, id: @status
+  assert_response :redirect
+  assert_redirected_to new_user_session_path
+
+  end
+
   test "should create status only when logged in" do
 
     sign_in users(:rodrigo)
@@ -51,14 +67,18 @@ class StatusesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: @status
-    assert_response :success
-  end
 
-  test "should update status" do
+  test "should be logged in to update status" do
+    sign_in users(:rodrigo)
     patch :update, id: @status, status: { content: @status.content }
     assert_redirected_to status_path(assigns(:status))
+  end
+
+  test "Should be redirected when trying to update but not logged in" do
+    patch :update, id: @status, status: { content: @status.content }
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+
   end
 
   test "should destroy status" do
