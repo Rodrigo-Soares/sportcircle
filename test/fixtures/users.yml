@@ -9,3 +9,9 @@ caroline:
   last_name: "Carlos"
   profile_name: "Carol"
   email: "carolinec@al.insper.edu.br"
+
+maria:
+  first_name: "Maria"
+  last_name: "Soares"
+  profile_name: "Cida"
+  email: "soaresmaria@uol.com.br"

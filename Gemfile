@@ -4,6 +4,10 @@ gem 'protected_attributes'
 gem 'devise'
 gem 'simple_form'
 
+group :test do
+	gem 'shoulda'
+end
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 
