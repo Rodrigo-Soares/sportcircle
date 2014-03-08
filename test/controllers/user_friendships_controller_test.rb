@@ -6,9 +6,10 @@ class UserFriendshipsControllerTest < ActionController::TestCase
 	     context "when user is not logged in" do
 	       should "Redirect user to the login page" do 
 	       	  get :new
-	       	assert_response :redirect
+	       	  assert_response :redirect
 	       end
-	     end
+	   	 end
+	    
 
 	     context "when user is logged in" do
 	     	
@@ -31,6 +32,26 @@ class UserFriendshipsControllerTest < ActionController::TestCase
 	     	get :new, friend_id: users(:caroline).id
 	     	assert_match /#{users(:caroline).full_name}/, response.body 
 
+	     	end
+
+	     	should "assign a new user friendship" do
+	     		get :new, friend_id: users(:caroline).id
+	     		assert assigns(:user_friendship)
+	     	end
+
+	     	should "assign a new user friendship correctly to the new friend" do
+	     		get :new, friend_id: users(:caroline).id
+	     		assert_equal users(:caroline), assigns(:user_friendship).friend
+	     	end
+
+	     	should "assign a new user friendship correctly to the current logged in user" do
+	     		get :new, friend_id: users(:caroline).id
+	     		assert_equal users(:rodrigo), assigns(:user_friendship).user
+	     	end
+
+	     	should "Render a 404 page if friend can't be found" do
+	     		get :new, friend_id: 'invalid'
+	     		assert_response :not_found
 	     	end
 
 	     end
