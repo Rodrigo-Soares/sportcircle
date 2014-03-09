@@ -29,23 +29,23 @@ class UserFriendshipsControllerTest < ActionController::TestCase
 
 	     	should "Display the friend's full name" do
 
-	     	get :new, friend_id: users(:caroline).id
+	     	get :new, friend_id: users(:caroline)
 	     	assert_match /#{users(:caroline).full_name}/, response.body 
 
 	     	end
 
 	     	should "assign a new user friendship" do
-	     		get :new, friend_id: users(:caroline).id
+	     		get :new, friend_id: users(:caroline)
 	     		assert assigns(:user_friendship)
 	     	end
 
 	     	should "assign a new user friendship correctly to the new friend" do
-	     		get :new, friend_id: users(:caroline).id
+	     		get :new, friend_id: users(:caroline)
 	     		assert_equal users(:caroline), assigns(:user_friendship).friend
 	     	end
 
 	     	should "assign a new user friendship correctly to the current logged in user" do
-	     		get :new, friend_id: users(:caroline).id
+	     		get :new, friend_id: users(:caroline)
 	     		assert_equal users(:rodrigo), assigns(:user_friendship).user
 	     	end
 
@@ -53,7 +53,10 @@ class UserFriendshipsControllerTest < ActionController::TestCase
 	     		get :new, friend_id: 'invalid'
 	     		assert_response :not_found
 	     	end
-
+	     	should "Ask if really want to add the friendship" do 
+	     		get :new, friend_id: users(:caroline)
+	     		assert_match /Do you really want to friend #{users(:caroline).full_name}?/, response.body
+	     	end
 	     end
 	   end
 end

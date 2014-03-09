@@ -4,7 +4,8 @@ class UserFriendshipsController < ApplicationController
 
 	def new
 		if params[:friend_id]
-		  @friend = User.find(params[:friend_id])
+		  @friend = User.where(profile_name: params[:friend_id]).first
+		  raise ActiveRecord::RecordNotFound if @friend.nil?
 		  @user_friendship = current_user.user_friendships.new(friend: @friend)
 		else
 			flash[:error] = "Friend id is missing."

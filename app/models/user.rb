@@ -35,4 +35,8 @@ class User < ActiveRecord::Base
 
   end
 
+  def to_param 
+    profile_name
+  end
+
 end
